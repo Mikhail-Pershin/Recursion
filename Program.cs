@@ -25,36 +25,67 @@
 
 
 
-// Задача 66: Выполнить с помощью рекурсии.Задайте значения M и N. 
-// Напишите программу, которая найдёт сумму натуральных элементов в промежутке от M до N.
+// // Задача 66: Выполнить с помощью рекурсии.Задайте значения M и N. 
+// // Напишите программу, которая найдёт сумму натуральных элементов в промежутке от M до N.
 
-// M = 1; N = 15 -> 120
-// M = 4; N = 8. -> 30
+// // M = 1; N = 15 -> 120
+// // M = 4; N = 8. -> 30
 
+
+// Console.Write("Введите первое число: ");
+// int M = int.Parse(Console.ReadLine()!);
+// if (M <= 0)
+// {
+//   Console.Write($"{M} не натуральное число");
+//   return;
+// }
+// Console.Write("Введите второе число: ");
+// int N = int.Parse(Console.ReadLine()!);
+// if (N <= 0)
+// {
+//   Console.Write($"{N} не натуральное число");
+//   return;
+// }
+
+// int NaturalNumbersSum(int start, int end, int total)
+// {
+//   if (start > end) return total;
+//   else
+//   {
+//     total += start;
+//     return NaturalNumbersSum(start + 1, end, total);
+//   }
+// }
+// int total = NaturalNumbersSum(start: M, end: N, total: 0);
+// Console.Write($"Сумма натуральных элементов в промежутке от {M} до {N} -> {total}");
+
+
+
+// Задача 68: Выполнить с помощью рекурсии. Напишите программу вычисления функции Аккермана с помощью рекурсии. 
+// Даны два неотрицательных числа m и n.
+// m = 2, n = 3 -> A(m,n) = 9
+// m = 3, n = 2 -> A(m,n) = 29
 
 Console.Write("Введите первое число: ");
-int M = int.Parse(Console.ReadLine()!);
-if (M <= 0)
+int m = int.Parse(Console.ReadLine()!);
+if (m < 0)
 {
-  Console.Write($"{M} не натуральное число");
+  Console.Write($"{m} отрицательное число");
   return;
 }
 Console.Write("Введите второе число: ");
-int N = int.Parse(Console.ReadLine()!);
-if (N <= 0)
+int n = int.Parse(Console.ReadLine()!);
+if (n < 0)
 {
-  Console.Write($"{N} не натуральное число");
+  Console.Write($"{n} отрицательное число");
   return;
 }
 
-int NaturalNumbersSum(int start, int end, int total)
+int Akkerman(int m, int n)
 {
-  if (start > end) return total;
-  else
-  {
-    total += start;
-    return NaturalNumbersSum(start + 1, end, total);
-  }
+  if (m == 0) return n + 1;
+  else if (n == 0) return Akkerman(m - 1, 1);
+  else return Akkerman(m - 1, Akkerman(m, n - 1));
 }
-int total = NaturalNumbersSum(start: M, end: N, total: 0);
-Console.Write($"Сумма натуральных элементов в промежутке от {M} до {N} -> {total}");
+
+Console.Write($"Вычисление функции Аккермана -> {Akkerman(m, n)}");
